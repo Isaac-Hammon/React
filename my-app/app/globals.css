@@ -25,6 +25,15 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+	background-image: url("/images/Skyrim.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	min-height: 100vh;
+	margin: 0;
+}
+
 .avatar {
 	border-radius: 500;
 }
