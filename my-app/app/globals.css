@@ -34,7 +34,7 @@ body {
 }
 
 /* Buttons */
-button {
+/* button {
 	background-color: #2563eb;
 	color: white;
 	padding: 10px 16px;
@@ -48,7 +48,7 @@ button {
 
 button:hover {
 	background-color: #1e40af;
-}
+} */
 
 /* Typography */
 h1 {
@@ -133,4 +133,41 @@ ul {
 
 .game-info {
 	color: white;
+}
+
+/* pure components */
+
+.panel {
+	border: 1px solid #aaa;
+	border-radius: 6px;
+	margin-top: 20px;
+	padding: 10px;
+	width: 200px;
+}
+
+.panel button {
+	background-color: #ddd;
+	color: black;
+	border: 1px solid #999;
+}
+
+.panel button:hover {
+	background-color: #ccc;
+}
+
+li {
+	border: 1px solid #aaa;
+	border-radius: 6px;
+	float: left;
+	margin: 5px;
+	margin-bottom: 20px;
+	padding: 5px;
+	width: 70px;
+	height: 100px;
+}
+
+.stories {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
