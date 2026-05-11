@@ -171,3 +171,29 @@ li {
 	justify-content: center;
 	align-items: center;
 }
+
+/* interactivity */
+body {
+	height: 200px;
+	font-family: sans-serif;
+	margin: 20px;
+	padding: 0;
+}
+
+select {
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.dropdown {
+	position: relative;
+	max-width: 200px;
+	color: black;
+	background-color: lightblue;
+	border-color: white;
+	border-width: 0.5px;
+}
+
+.color-option {
+	color: black;
+}
