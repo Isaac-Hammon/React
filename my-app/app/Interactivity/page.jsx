@@ -92,172 +92,172 @@ import { useState } from "react";
 // }
 
 //Incorrect State Updates Challenge
-// export default function Scoreboard() {
-// 	const [player, setPlayer] = useState({
-// 		firstName: "Ranjani",
-// 		lastName: "Shettar",
-// 		score: 10,
-// 	});
-
-// 	function handlePlusClick() {
-// 		setPlayer({
-// 			...player,
-// 			score: player.score + 1,
-// 		});
-// 	}
-
-// 	function handleFirstNameChange(e) {
-// 		setPlayer({
-// 			...player,
-// 			firstName: e.target.value,
-// 		});
-// 	}
-
-// 	function handleLastNameChange(e) {
-// 		setPlayer({
-// 			...player,
-// 			lastName: e.target.value,
-// 		});
-// 	}
-
-// 	return (
-// 		<>
-// 			<label>
-// 				Score: <b>{player.score}</b> <button onClick={handlePlusClick}>+1</button>
-// 			</label>
-// 			<label>
-// 				First name:
-// 				<input value={player.firstName} onChange={handleFirstNameChange} />
-// 			</label>
-// 			<label>
-// 				Last name:
-// 				<input value={player.lastName} onChange={handleLastNameChange} />
-// 			</label>
-// 		</>
-// 	);
-// }
-
-// Find and Fix Mutation Challenge
-
-const initialPosition = {
-	x: 0,
-	y: 0,
-};
-
-function Background({ position }) {
-	return (
-		<div
-			style={{
-				position: "absolute",
-				width: 400,
-				height: 400,
-				border: "2px solid gray",
-				transform: `translate(${position.x}px, ${position.y}px)`,
-			}}
-		/>
-	);
-}
-
-export default function Canvas() {
-	const [shape, setShape] = useState({
-		color: "orange",
-		position: initialPosition,
+export default function Scoreboard() {
+	const [player, setPlayer] = useState({
+		firstName: "Ranjani",
+		lastName: "Shettar",
+		score: 10,
 	});
 
-	function handleMove(dx, dy) {
-		setShape((prevShape) => ({
-			...prevShape,
-			position: {
-				x: prevShape.position.x + dx,
-				y: prevShape.position.y + dy,
-			},
-		}));
+	function handlePlusClick() {
+		setPlayer({
+			...player,
+			score: player.score + 1,
+		});
 	}
 
-	function handleColorChange(e) {
-		setShape((prevShape) => ({
-			...prevShape,
-			color: e.target.value,
-		}));
+	function handleFirstNameChange(e) {
+		setPlayer({
+			...player,
+			firstName: e.target.value,
+		});
+	}
+
+	function handleLastNameChange(e) {
+		setPlayer({
+			...player,
+			lastName: e.target.value,
+		});
 	}
 
 	return (
 		<>
-			<select className="dropdown" value={shape.color} onChange={handleColorChange}>
-				<option className="color-option" value="orange">
-					orange
-				</option>
-
-				<option className="color-option" value="lightpink">
-					lightpink
-				</option>
-
-				<option className="color-option" value="aliceblue">
-					aliceblue
-				</option>
-			</select>
-
-			<section>
-				<Background position={initialPosition} />
-
-				<Box color={shape.color} position={shape.position} onMove={handleMove}>
-					Drag me!
-				</Box>
-			</section>
+			<label>
+				Score: <b>{player.score}</b> <button onClick={handlePlusClick}>+1</button>
+			</label>
+			<label>
+				First name:
+				<input value={player.firstName} onChange={handleFirstNameChange} />
+			</label>
+			<label>
+				Last name:
+				<input value={player.lastName} onChange={handleLastNameChange} />
+			</label>
 		</>
 	);
 }
 
-function Box({ children, color, position, onMove }) {
-	const [lastCoordinates, setLastCoordinates] = useState(null);
+// Find and Fix Mutation Challenge
 
-	function handlePointerDown(e) {
-		e.target.setPointerCapture(e.pointerId);
+// const initialPosition = {
+// 	x: 0,
+// 	y: 0,
+// };
 
-		setLastCoordinates({
-			x: e.clientX,
-			y: e.clientY,
-		});
-	}
+// function Background({ position }) {
+// 	return (
+// 		<div
+// 			style={{
+// 				position: "absolute",
+// 				width: 400,
+// 				height: 400,
+// 				border: "2px solid gray",
+// 				transform: `translate(${position.x}px, ${position.y}px)`,
+// 			}}
+// 		/>
+// 	);
+// }
 
-	function handlePointerMove(e) {
-		if (lastCoordinates) {
-			const dx = e.clientX - lastCoordinates.x;
-			const dy = e.clientY - lastCoordinates.y;
+// export default function Canvas() {
+// 	const [shape, setShape] = useState({
+// 		color: "orange",
+// 		position: initialPosition,
+// 	});
 
-			setLastCoordinates({
-				x: e.clientX,
-				y: e.clientY,
-			});
+// 	function handleMove(dx, dy) {
+// 		setShape((prevShape) => ({
+// 			...prevShape,
+// 			position: {
+// 				x: prevShape.position.x + dx,
+// 				y: prevShape.position.y + dy,
+// 			},
+// 		}));
+// 	}
 
-			onMove(dx, dy);
-		}
-	}
+// 	function handleColorChange(e) {
+// 		setShape((prevShape) => ({
+// 			...prevShape,
+// 			color: e.target.value,
+// 		}));
+// 	}
 
-	function handlePointerUp() {
-		setLastCoordinates(null);
-	}
+// 	return (
+// 		<>
+// 			<select className="dropdown" value={shape.color} onChange={handleColorChange}>
+// 				<option className="color-option" value="orange">
+// 					orange
+// 				</option>
 
-	return (
-		<div
-			onPointerDown={handlePointerDown}
-			onPointerMove={handlePointerMove}
-			onPointerUp={handlePointerUp}
-			style={{
-				width: 100,
-				height: 100,
-				cursor: "grab",
-				backgroundColor: color,
-				position: "absolute",
-				border: "1px solid black",
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				userSelect: "none",
-				transform: `translate(${position.x}px, ${position.y}px)`,
-			}}
-		>
-			{children}
-		</div>
-	);
-}
+// 				<option className="color-option" value="lightpink">
+// 					lightpink
+// 				</option>
+
+// 				<option className="color-option" value="aliceblue">
+// 					aliceblue
+// 				</option>
+// 			</select>
+
+// 			<section>
+// 				<Background position={initialPosition} />
+
+// 				<Box color={shape.color} position={shape.position} onMove={handleMove}>
+// 					Drag me!
+// 				</Box>
+// 			</section>
+// 		</>
+// 	);
+// }
+
+// function Box({ children, color, position, onMove }) {
+// 	const [lastCoordinates, setLastCoordinates] = useState(null);
+
+// 	function handlePointerDown(e) {
+// 		e.target.setPointerCapture(e.pointerId);
+
+// 		setLastCoordinates({
+// 			x: e.clientX,
+// 			y: e.clientY,
+// 		});
+// 	}
+
+// 	function handlePointerMove(e) {
+// 		if (lastCoordinates) {
+// 			const dx = e.clientX - lastCoordinates.x;
+// 			const dy = e.clientY - lastCoordinates.y;
+
+// 			setLastCoordinates({
+// 				x: e.clientX,
+// 				y: e.clientY,
+// 			});
+
+// 			onMove(dx, dy);
+// 		}
+// 	}
+
+// 	function handlePointerUp() {
+// 		setLastCoordinates(null);
+// 	}
+
+// 	return (
+// 		<div
+// 			onPointerDown={handlePointerDown}
+// 			onPointerMove={handlePointerMove}
+// 			onPointerUp={handlePointerUp}
+// 			style={{
+// 				width: 100,
+// 				height: 100,
+// 				cursor: "grab",
+// 				backgroundColor: color,
+// 				position: "absolute",
+// 				border: "1px solid black",
+// 				display: "flex",
+// 				justifyContent: "center",
+// 				alignItems: "center",
+// 				userSelect: "none",
+// 				transform: `translate(${position.x}px, ${position.y}px)`,
+// 			}}
+// 		>
+// 			{children}
+// 		</div>
+// 	);
+// }
